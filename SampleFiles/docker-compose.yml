@@ -1,0 +1,24 @@
+﻿# 버전을 지정
+version: '3.6'
+
+# 서비스 정의
+services:
+  webserver:
+    build: .
+    ports:
+     - "80:80"
+    networks:
+     - webnet
+
+  redis:
+    image: redis:4.0
+    networks:
+     - webnet
+    volumes:
+     - /var/redis
+     - /docker/testdir:/var/redis
+
+# 네트워크 정의
+networks:
+  webnet:
+
